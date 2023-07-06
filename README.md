@@ -38,7 +38,7 @@ curl -H "X-Tapis-Token: $JWT" -H "Content-type: application/json" -d '{"client_i
 
 
 ### Create a `config.yaml `
-Next, we create a config file
+Next, we create a config file. The file name and location can be anything; by default `iciflaskn` looks for a config file at the path `/app/config.yaml`, but you can configure the path by exporting APP_CONFIG_PATH set to the path to your file.
 
 ```
 # Your client credentials
@@ -83,6 +83,9 @@ def hello():
     if not authenticated:
         message = 'Please login to continue'
         # . . .
+    else:
+        message = f"Hello, {user}"
+        # . . .
 ```
 
 The `iciflaskn.auth.is_logged_in()` returns the following:
@@ -90,3 +93,8 @@ The `iciflaskn.auth.is_logged_in()` returns the following:
   * `authenticated` (bool) -- Whether the user is authenticated in the session.
   * `user` (Optional(str)) -- Unique username for the authenticated user, or None.
   * `roles` (Optional([str])) -- List of role ids occupied by the authenticated user, or None.
+
+
+# Acknowledgements
+
+*This work has been funded by grants from the National Science Foundation, including the ICICLE AI Institute (OAC 2112606) and Tapis (OAC 1931439).*
